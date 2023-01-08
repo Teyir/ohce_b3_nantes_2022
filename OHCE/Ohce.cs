@@ -4,6 +4,7 @@ namespace OHCE;
 
 public class Ohce
 {
+
     private readonly ILangue _langue;
     private readonly PériodeJournée _périodeJournée;
 
@@ -15,19 +16,41 @@ public class Ohce
 
     public string Palindrome(string input)
     {
-        var stringBuilder = 
-            new StringBuilder(_langue.DireBonjour(_périodeJournée));
-
         var reversed = new string(
-            input.Reverse().ToArray()
+            input.ToLower().Reverse().ToArray()
         );
 
-        stringBuilder.Append(reversed);
+        var stringBuilder =
+            new StringBuilder("\n################################################\n" + 
+            "Voici votre résultat: " 
+            + reversed +
+            "\n################################################\n");
 
-        if (reversed.Equals(input))
+        if (reversed.Equals(input.ToLower()))
             stringBuilder.Append(_langue.BienDit);
 
-        stringBuilder.Append(_langue.AuRevoir);
+        return stringBuilder.ToString();
+    }
+
+    public string GenererPalindrome()
+    {
+        List<string> list = new List<string>() { "été", "kayak", "non", "elle", "ère", "rotor", "coloc", "bob", "gag", "radar", "ici"};
+
+        return list.ElementAt(new Random().Next(1, list.Count)).ToString() ?? "C pété";
+    }
+
+    public string DireBonjour()
+    {
+        var stringBuilder =
+            new StringBuilder(_langue.DireBonjour(_périodeJournée));
+
+        return stringBuilder.ToString();
+    }
+
+    public string DireAurevoir()
+    {
+        var stringBuilder =
+            new StringBuilder(_langue.AuRevoir);
 
         return stringBuilder.ToString();
     }

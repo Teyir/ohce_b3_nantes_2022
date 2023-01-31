@@ -21,13 +21,14 @@ public class Ohce
         );
 
         var stringBuilder =
-            new StringBuilder("\n################################################\n" + 
-            "Voici votre résultat: " 
-            + reversed +
-            "\n################################################\n");
+            new StringBuilder(DireBonjour() + "\n");
 
         if (reversed.Equals(input.ToLower()))
-            stringBuilder.Append(_langue.BienDit);
+            stringBuilder.Append(reversed + "\n" + DireBienDit() + "\n");
+        else
+            stringBuilder.Append(_langue.MotInverse + " : " + reversed + "\n");
+
+        stringBuilder.Append(DireAuRevoir());
 
         return stringBuilder.ToString();
     }
@@ -39,19 +40,20 @@ public class Ohce
         return list.ElementAt(new Random().Next(1, list.Count)).ToString() ?? "C pété";
     }
 
-    public string DireBonjour()
+    public string DireBienDit()
     {
-        var stringBuilder =
-            new StringBuilder(_langue.DireBonjour(_périodeJournée));
 
-        return stringBuilder.ToString();
+        return _langue.BienDit;
     }
 
-    public string DireAurevoir()
+    public string DireBonjour()
     {
-        var stringBuilder =
-            new StringBuilder(_langue.AuRevoir);
 
-        return stringBuilder.ToString();
+        return _langue.DireBonjour(_périodeJournée);
+    }
+
+    public string DireAuRevoir()
+    {
+        return _langue.DireAuRevoir(_périodeJournée);
     }
 }

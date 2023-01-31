@@ -38,9 +38,7 @@ public class OhceTest
 
         // ALORS il est renvoyé
         // ET <bienDit> en <langue> est envoyé
-        Assert.Contains(
-            palindrome + langue.BienDit, 
-            sortie);
+        Assert.Contains(palindrome + "\n" + langue.BienDit, sortie);
     }
 
     private static readonly IEnumerable<ILangue> Langues = new ILangue[]
@@ -85,18 +83,19 @@ public class OhceTest
     [Theory(DisplayName = "ETANT DONNE un utilisateur parlant une langue" +
                           "QUAND l'app se ferme " +
                           "ALORS <auRevoir> dans cette langue est envoyé")]
-    [MemberData(nameof(LanguesSeules))]
-    public void FermetureTest(ILangue langue)
+    [MemberData(nameof(LanguesEtPériodes))]
+    public void FermetureTest(ILangue langue, PériodeJournée période)
     {
         // ETANT DONNE un utilisateur parlant une langue
         var ohce = new OhceBuilder()
             .AyantPourLangue(langue)
+            .AyantPourPériodeDeLaJournée(période)
             .Build();
 
         // QUAND l'app démarre
         var sortie = ohce.Palindrome(string.Empty);
 
         // ALORS <auRevoir> dans cette langue est envoyé
-        Assert.EndsWith(langue.AuRevoir, sortie);
+        Assert.EndsWith(langue.DireAuRevoir(période), sortie);
     }
 }

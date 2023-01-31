@@ -2,18 +2,31 @@
 {
     public class LangueFrançaise : ILangue
     {
-        /// <inheritdoc />
+      
         public string BienDit => Expressions.Français.BienDit;
 
-        /// <inheritdoc />
-        public string DireBonjour(PériodeJournée période)
+     
+        public string DireBonjour(PériodeJournée periodeJournée)
         {
-            return période == PériodeJournée.Soir 
+            return periodeJournée == PériodeJournée.Soir 
                 ? Expressions.Français.Bonsoir 
                 : Expressions.Français.Bonjour;
         }
 
-        /// <inheritdoc />
-        public string AuRevoir => Expressions.Français.AuRevoir;
+        public string DireAuRevoir(PériodeJournée periodeJournée)
+        {
+            return periodeJournée == PériodeJournée.Soir
+                ? Expressions.Français.Bonsoir
+                : Expressions.Français.AuRevoir;
+        }
+
+
+        public string LangageUtilise => Expressions.Français.LangueUtilisee;
+
+        public string Periode => Expressions.Français.Periode;
+
+        public string InputText => Expressions.Français.InputText;
+
+        public string MotInverse => Expressions.Français.MotInversé;
     }
 }

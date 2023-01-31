@@ -19,5 +19,15 @@ namespace OHCE.Test.xUnit
             // ALORS on me répond <salutationAttendue>
             Assert.Equal(salutationAttendue, salutation);
         }
+
+        [Theory]
+        [InlineData(PériodeJournée.Soir, Expressions.Français.Bonsoir)]
+        [InlineData(PériodeJournée.Matin, Expressions.Français.AuRevoir)]
+        public void DireAuRevoirTest(PériodeJournée periode, string salutationAttendue)
+        {
+            var langue = new LangueFrançaise();
+            var auRevoir = langue.DireAuRevoir(periode);
+            Assert.Equal(salutationAttendue, auRevoir);
+        }
     }
 }

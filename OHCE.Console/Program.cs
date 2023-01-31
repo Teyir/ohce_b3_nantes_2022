@@ -9,5 +9,3 @@ Console.WriteLine($"{Expressions.Français.ExPalindrome}: {ohce.GenererPalindrom
 
 Console.WriteLine(Expressions.Français.TitrePalindrome);
 Console.WriteLine(ohce.Palindrome(Console.ReadLine() ?? String.Empty));
-
-Console.WriteLine(ohce.DireAurevoir());
